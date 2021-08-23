@@ -97,4 +97,5 @@ Exemplo modelo do item da lista JSON:
 - Componentização é importante para nós
 - Um código C# bem escrito não quer guerra com ninguém
 - Os componentes do Xamarin Forms são praticamente suficientes para o teste
+- Pense como um projeto escalável
 - Não use bala de canhão para matar uma formiga
