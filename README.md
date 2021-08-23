@@ -12,7 +12,6 @@ O desafio é implementar um app 📱 onde o nosso cliente possa consultar suas o
 - Criar uma página de login
 - Criar uma página com uma lista de ordens 
 - Consumir uma API REST com a lista de ordens
-- Sistema de navegação entre as páginas
 
 ## Avaliação
  Tudo é permitido, pense como se esse APP fosse seu, você é o dono do negócio. Nossa avaliação será em cima de como você lidará com essa demanda; performance, tratamento de erros, layout. Questões de arquitetura, estrutura, plugins e code-smell também serão avaliados.
