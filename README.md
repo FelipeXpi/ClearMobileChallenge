@@ -3,7 +3,7 @@
 # Challenge Clear - Desenvolvedor Mobile
 ## Desafio Xamarin Forms
 
-Nós 🥳, da Guilda Mobile da Clear Corretora sempre estamos em busca do melhor para nosso APP📱, hoje, feito em Xamarin Forms 💕. Não temos a melhor arquitetura, não temos o melhor código fonte, mas estamos em evolução 📈 constante para entregar o melhor para o nosso cliente 🥰. E dentre as estratégias, é reunir os melhores devs 💻 mobile que poderiamos ter. Por isso estamos lançando esse desafio para você 👊. 
+Nós �, da Guilda Mobile da Clear Corretora sempre estamos em busca do melhor para nosso APP�, hoje, feito em Xamarin Forms �. Estamos em evolução � constante para entregar o melhor para o nosso cliente � e dentre as estratégias, é reunir os melhores devs � mobile que poderiamos ter. Por isso estamos lançando esse desafio para você �. 
 
 
 O desafio é implementar um app 📱 onde o nosso cliente possa consultar suas ordens enviadas a bolsa de valores.📈
