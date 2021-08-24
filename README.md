@@ -75,7 +75,6 @@ Exemplo modelo do item da lista JSON:
 - [x] Siga o mínimo do modelo do protótipo
 - [x] Usar Xamarin Forms > 5.0.0
 - [x] Criar o layout com XAML
-- [x] Projeto deve rodar no Android e iOS
 - [x] Layout deve ser responsivo
 
 
@@ -90,6 +89,7 @@ Exemplo modelo do item da lista JSON:
 - Inclua todo seu código dentro do diretório /put-your-challenge-here
 - Ao final do desenvolvimento, abra um Pull Request direcionada á branch que foi passada a você
 - Leia com atenção a toda essa especificação, e nos diga a SUA estimativa de entrega em dias.
+- Caso não seja possível testar no iOS, pode ser feito apenas com Android (Windows)
 
 ## Dicas 😘 
 - TUDO a mais, será avaliado como bônus
