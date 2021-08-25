@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ClearApp.ViewModels.Pages"
+             xmlns:customs="clr-namespace:ClearApp.Views.Custom"
+             xmlns:models="clr-namespace:ClearApp.Models"
+             BackgroundColor="{StaticResource backgroundColor}"
+             x:Class="ClearApp.Views.Pages.OrdersPage"
+             x:DataType="vm:OrdersPageViewModel">
+
+    <NavigationPage.TitleView>
+
+        <StackLayout Style="{StaticResource toolbarStyle}">
+            
+            <Label Text="Ordens"
+                   Style="{StaticResource DefaultLabelStyle}"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+
+            <Label Text="Swing Trade"
+                   Style="{StaticResource DefaultLabelStyle}"
+                   FontSize="Small"
+                   HorizontalTextAlignment="Center"/>
+
+            <BoxView BackgroundColor="#3671cd" 
+                     HeightRequest="1"
+                     HorizontalOptions="Fill"/>
+
+        </StackLayout>
+        
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+
+        <AbsoluteLayout>
+            
+            <CollectionView x:Name="orderCollectionView"
+                            ItemsSource="{Binding ItemsSource}"
+                            RemainingItemsThreshold="10"
+                            RemainingItemsThresholdReachedCommand="{Binding ThresholdReachedCommand, Mode=OneWay}"
+                            SelectionMode="None">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="12"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                
+                    <DataTemplate x:DataType="models:Order">
+
+                        <customs:OrderItemView/>
+                    
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            
+            </CollectionView>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               AbsoluteLayout.LayoutFlags="PositionProportional" 
+                               AbsoluteLayout.LayoutBounds=".5,.5,-1,-1"
+                               Color="{StaticResource textColor}"/>
+        </AbsoluteLayout>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

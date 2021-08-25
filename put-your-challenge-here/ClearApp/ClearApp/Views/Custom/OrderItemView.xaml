@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:converters="clr-namespace:ClearApp.Converters"
+      xmlns:models="clr-namespace:ClearApp.Models"
+      xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+      x:Class="ClearApp.Views.Custom.OrderItemView"
+      x:DataType="models:Order"
+      BackgroundColor="#1d262f"
+      HeightRequest="120"
+      Padding="15">
+
+    <Grid.Resources>
+        <ResourceDictionary Source="/Styles/OrderItemViewStyle.xaml"/>
+        <converters:SideColorConverter x:Key="sideColor"/>
+        <converters:SideCharConverter x:Key="sideChar"/>
+        <converters:PrefixTextConverter x:Key="prefixText"/>
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="20*"/>
+        <RowDefinition Height="48*"/>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="30*"/>
+    </Grid.RowDefinitions>
+
+    <!-- date -->
+    <Label Text="{Binding CreatedAt, StringFormat='{dd/MM/yyyy hh:mm:ss}'}"
+           Style="{StaticResource dateTimeLabel}"
+           Grid.Row="0"/>
+
+    <!-- image, symbol name and quantity -->
+    <Grid Grid.Row="1">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+
+        <ffImageLoading:CachedImage Source="{Binding Logo}"
+                                    DownsampleToViewSize="True"
+                                    CacheDuration="5"
+                                    Grid.Column="0"/>
+
+        <StackLayout Spacing="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
+
+            <Label Text="{Binding Symbol}"
+                   Style="{StaticResource DefaultLabelStyle}"
+                   FontAttributes="Bold"/>
+
+            <Label Text="{Binding Name}"
+                   Style="{StaticResource DefaultLabelStyle}"/>
+
+        </StackLayout>
+
+        <Label Text="{Binding Quantity, Converter={StaticResource prefixText}, ConverterParameter='Qtd. '}"
+               Style="{StaticResource DefaultLabelStyle}"
+               FontSize="Small"
+               VerticalOptions="Center"
+               HorizontalOptions="End"
+               Grid.Column="2"/>
+
+    </Grid>
+
+    <!-- line -->
+    <BoxView Grid.Row="2"
+             HeightRequest="1"
+             BackgroundColor="#3a4d5e"/>
+
+    <!-- badges -->
+    <Grid VerticalOptions="Center"
+          Grid.Row="3">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame Style="{StaticResource moduleBadgeFrame}" Grid.Column="0">
+            <Label Text="{Binding Module}"
+                   Style="{StaticResource badgeLabel}"
+                   TextColor="{StaticResource textColor}"
+                   LineBreakMode="TailTruncation"/>
+        </Frame>
+
+        <Frame Style="{StaticResource statusBadgeFrame}" Grid.Column="1">
+            <Label Text="{Binding Status}"
+                   Style="{StaticResource badgeLabel}"
+                   TextColor="Black"/>
+        </Frame>
+
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="End"
+                     Grid.Column="3">
+
+            <Label Text="{Binding Side}"
+                   Style="{StaticResource badgeLabel}"
+                   TextColor="{StaticResource textColor}"/>
+
+            <Frame Style="{StaticResource sideBadgeFrame}"
+                   BackgroundColor="{Binding Side, Converter={StaticResource sideColor}}"
+                   Grid.Column="1">
+                <Label Text="{Binding Side, Converter={StaticResource sideChar}}"
+                       Style="{StaticResource badgeLabel}"
+                       TextColor="{StaticResource textColor}"/>
+            </Frame>
+
+        </StackLayout>
+
+    </Grid>
+
+</Grid>
