@@ -35,8 +35,7 @@
 
         <AbsoluteLayout>
             
-            <CollectionView x:Name="orderCollectionView"
-                            ItemsSource="{Binding ItemsSource}"
+            <CollectionView ItemsSource="{Binding ItemsSource}"
                             RemainingItemsThreshold="10"
                             RemainingItemsThresholdReachedCommand="{Binding ThresholdReachedCommand, Mode=OneWay}"
                             SelectionMode="None">

@@ -17,14 +17,16 @@ namespace ClearAppTests.ViewModels
         }
 
         [Fact]
-        public void ShouldGetApiCollectionAfterConstructor()
+        public void ShouldGetApiCollectionOnAppearing()
         {
+            ordersPageViewModel.OnAppearingCommand.Execute(null);
             Assert.NotNull(ordersPageViewModel.ApiOrderCollection);
         }
 
         [Fact]
-        public void ShouldGetApiCollectionAndUpdateItemsSourceAfterConstructor()
+        public void ShouldGetApiCollectionAndUpdateItemsSourceOnAppearing()
         {
+            ordersPageViewModel.OnAppearingCommand.Execute(null);
             Assert.NotNull(ordersPageViewModel.ItemsSource);
             Assert.Equal(OrdersPageViewModel.ITEMS_PER_LOADING, ordersPageViewModel.SkippedItems);
         }
@@ -32,6 +34,7 @@ namespace ClearAppTests.ViewModels
         [Fact]
         public void ShouldNotGetNextItemsWhenScrollThresholdReachedAndItemsSourceLimitReached()
         {
+            ordersPageViewModel.OnAppearingCommand.Execute(null);
             Assert.Equal(OrdersPageViewModel.ITEMS_PER_LOADING, ordersPageViewModel.SkippedItems);
 
             ordersPageViewModel.ThresholdReachedCommand.Execute(null);
@@ -41,9 +44,10 @@ namespace ClearAppTests.ViewModels
         [Fact]
         public void ShouldGetNextItemsWhenScrollThresholdReached()
         {
-            ordersPageViewModel.ItemsSource = fakeSource;
+            ordersPageViewModel.OnAppearingCommand.Execute(null);
             Assert.Equal(OrdersPageViewModel.ITEMS_PER_LOADING, ordersPageViewModel.SkippedItems);
 
+            ordersPageViewModel.ItemsSource = fakeSource;
             var expectedSkipped = OrdersPageViewModel.ITEMS_PER_LOADING * 2;
             ordersPageViewModel.ThresholdReachedCommand.Execute(null);
             Assert.Equal(expectedSkipped, ordersPageViewModel.SkippedItems);

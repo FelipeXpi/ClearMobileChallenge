@@ -1,24 +1,27 @@
-﻿using ClearApp.Abstractions;
+﻿using ClearApp.Services;
+using ClearApp.ViewModels.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DependencyService = ClearApp.Services.DependencyService;
 
 namespace ClearApp.Views.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrdersPage : ContentPage, IViewModelPage
+    public partial class OrdersPage : ContentPage
     {
+        private readonly OrdersPageViewModel _viewModel;
+
         public OrdersPage()
         {
             InitializeComponent();
-            BindViewModel();
+
+            _viewModel = this.GetViewModel() as OrdersPageViewModel;
+            BindingContext = _viewModel;
         }
 
-        #region IViewModelPage
-
-        public void BindViewModel() =>
-            DependencyService.BindViewModel(this);
-
-        #endregion
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearingCommand.Execute(null);
+        }
     }
 }

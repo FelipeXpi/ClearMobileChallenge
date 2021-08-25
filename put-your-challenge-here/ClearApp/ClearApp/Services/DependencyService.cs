@@ -26,12 +26,12 @@ namespace ClearApp.Services
             container.Register<OrdersPage>();
         }
 
-        public static void BindViewModel(BindableObject bindable)
+        public static object GetViewModel(this BindableObject bindable)
         {
             var view = bindable as Element;
 
-            if (view == null) return;
-            if (view.BindingContext != null) return;
+            if (view == null) return null;
+            if (view.BindingContext != null) return null;
 
             var viewType = view.GetType();
             var viewName = viewType.FullName.Replace(".Views.", ".ViewModels.");
@@ -40,10 +40,9 @@ namespace ClearApp.Services
                 CultureInfo.InvariantCulture, "{0}ViewModel, {1}", viewName, viewAssemblyName);
 
             var viewModelType = Type.GetType(viewModelName, false, true);
-            if (viewModelType == null) return;
+            if (viewModelType == null) return null;
 
-            var viewModel = container.Resolve(viewModelType);
-            view.BindingContext = viewModel;
+            return container.Resolve(viewModelType);
         }
     }
 }

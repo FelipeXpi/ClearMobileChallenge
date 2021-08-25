@@ -29,6 +29,9 @@ namespace ClearApp.ViewModels.Pages
 
         #region Properties
 
+        public ICommand OnAppearingCommand =>
+            new Command(OnAppearingCommandExecute);
+
         public ICommand ThresholdReachedCommand =>
             new Command(ThresholdReachedCommandExecute);
 
@@ -70,12 +73,14 @@ namespace ClearApp.ViewModels.Pages
             _apiService = apiService;
 
             ItemsSource = new ObservableCollection<Order>();
-            GetApiOrderCollectionAsync().SafeFireAndForget();
         }
 
         #endregion
 
         #region Private Methods
+
+        private void OnAppearingCommandExecute(object sender) =>
+            GetApiOrderCollectionAsync().SafeFireAndForget();
 
         private void ThresholdReachedCommandExecute(object sender)
         {
