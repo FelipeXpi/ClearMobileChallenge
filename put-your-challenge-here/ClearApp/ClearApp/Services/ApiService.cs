@@ -31,7 +31,7 @@ namespace ClearApp.Services
 
         #endregion
 
-        #region IApiManager
+        #region IApiService
 
         public async Task<IEnumerable<Order>> GetOrdersAsync() =>
              await _api.GetOrders().ConfigureAwait(false);

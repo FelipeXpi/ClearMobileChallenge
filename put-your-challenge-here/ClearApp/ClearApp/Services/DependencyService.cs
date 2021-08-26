@@ -22,8 +22,6 @@ namespace ClearApp.Services
         private static void RegisterDependencies()
         {
             container.Register<IApiService, ApiService>();
-            container.Register<OrdersPageViewModel>();
-            container.Register<OrdersPage>();
         }
 
         public static object GetViewModel(this BindableObject bindable)
