@@ -5,21 +5,22 @@
              xmlns:customs="clr-namespace:ClearApp.Views.Custom"
              xmlns:models="clr-namespace:ClearApp.Models"
              BackgroundColor="{StaticResource backgroundColor}"
+             NavigationPage.HasNavigationBar="True"
              x:Class="ClearApp.Views.Pages.OrdersPage"
              x:DataType="vm:OrdersPageViewModel">
-
+    
     <NavigationPage.TitleView>
 
         <StackLayout Style="{StaticResource toolbarStyle}">
             
             <Label Text="Ordens"
-                   Style="{StaticResource DefaultLabelStyle}"
+                   Style="{StaticResource defaultLabelStyle}"
                    FontSize="Medium"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"/>
 
             <Label Text="Swing Trade"
-                   Style="{StaticResource DefaultLabelStyle}"
+                   Style="{StaticResource defaultLabelStyle}"
                    FontSize="Small"
                    HorizontalTextAlignment="Center"/>
 

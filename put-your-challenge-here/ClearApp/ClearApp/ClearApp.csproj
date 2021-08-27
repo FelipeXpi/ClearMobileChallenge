@@ -30,10 +30,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Styles\DefaultTheme.xaml">
+    <EmbeddedResource Update="Styles\Colors.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Styles\OrderItemViewStyle.xaml">
+    <EmbeddedResource Update="Styles\DarkTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\DefaultTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Custom\OrderItemView.xaml">
@@ -50,9 +53,6 @@
   <ItemGroup>
     <Compile Update="Styles\DefaultTheme.xaml.cs">
       <DependentUpon>DefaultTheme.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Styles\OrderItemViewStyle.xaml.cs">
-      <DependentUpon>OrderItemViewStyle.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Custom\OrderItemView.xaml.cs">
       <DependentUpon>OrderItemView.xaml</DependentUpon>

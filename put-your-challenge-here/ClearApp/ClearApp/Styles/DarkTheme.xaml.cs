@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace ClearApp.Styles
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderItemViewStyle : ResourceDictionary
+    public partial class DarkTheme : ResourceDictionary
     {
-        public OrderItemViewStyle()
+        public DarkTheme()
         {
             InitializeComponent();
         }

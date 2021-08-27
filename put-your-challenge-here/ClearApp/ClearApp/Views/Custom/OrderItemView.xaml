@@ -3,18 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
       xmlns:converters="clr-namespace:ClearApp.Converters"
       xmlns:models="clr-namespace:ClearApp.Models"
-      xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+      xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
       x:Class="ClearApp.Views.Custom.OrderItemView"
       x:DataType="models:Order"
-      BackgroundColor="#1d262f"
-      HeightRequest="120"
-      Padding="15">
+      Style="{StaticResource orderCard}">
 
     <Grid.Resources>
-        <ResourceDictionary Source="/Styles/OrderItemViewStyle.xaml"/>
         <converters:SideColorConverter x:Key="sideColor"/>
         <converters:SideCharConverter x:Key="sideChar"/>
-        <converters:PrefixTextConverter x:Key="prefixText"/>
     </Grid.Resources>
 
     <Grid.RowDefinitions>
@@ -38,24 +34,24 @@
             <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
 
-        <ffImageLoading:CachedImage Source="{Binding Logo}"
-                                    DownsampleToViewSize="True"
-                                    CacheDuration="5"
-                                    Grid.Column="0"/>
+        <ff:CachedImage Source="{Binding Logo}"
+                        DownsampleToViewSize="True"
+                        CacheDuration="5"
+                        Grid.Column="0"/>
 
         <StackLayout Spacing="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start">
 
             <Label Text="{Binding Symbol}"
-                   Style="{StaticResource DefaultLabelStyle}"
+                   Style="{StaticResource defaultLabelStyle}"
                    FontAttributes="Bold"/>
 
             <Label Text="{Binding Name}"
-                   Style="{StaticResource DefaultLabelStyle}"/>
+                   Style="{StaticResource defaultLabelStyle}"/>
 
         </StackLayout>
 
-        <Label Text="{Binding Quantity, Converter={StaticResource prefixText}, ConverterParameter='Qtd. '}"
-               Style="{StaticResource DefaultLabelStyle}"
+        <Label Text="{Binding Quantity, StringFormat='Qtd. {0}'}"
+               Style="{StaticResource defaultLabelStyle}"
                FontSize="Small"
                VerticalOptions="Center"
                HorizontalOptions="End"

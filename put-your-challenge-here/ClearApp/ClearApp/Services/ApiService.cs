@@ -1,47 +1,30 @@
 ﻿using ClearApp.Abstractions;
 using ClearApp.Apis;
 using ClearApp.Models;
-using Refit;
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ClearApp.Services
 {
-    public sealed class ApiService : IApiService, IDisposable
+    public sealed class ApiService : IApiService
     {
         #region Fields
 
-        private readonly HttpClient _client;
-        private readonly IRestApi _api;
+        private readonly IRestApi _restApi;
 
         #endregion
 
         #region Constructors
 
-        public ApiService()
-        {
-            _client = new HttpClient() {
-                BaseAddress = new Uri(Constants.Api.URL)
-            };
-
-            _api = RestService.For<IRestApi>(_client);
-        }
+        public ApiService(IRestApi restApi) =>
+            _restApi = restApi;
 
         #endregion
 
         #region IApiService
 
         public async Task<IEnumerable<Order>> GetOrdersAsync() =>
-             await _api.GetOrders().ConfigureAwait(false);
-
-        #endregion
-
-        #region IDisposable
-
-        public void Dispose() =>
-            _client?.Dispose();
+             await _restApi.GetOrders().ConfigureAwait(false);
 
         #endregion
     }

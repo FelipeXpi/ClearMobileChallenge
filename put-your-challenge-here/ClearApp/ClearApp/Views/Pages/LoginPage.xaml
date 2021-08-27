@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:extensions="clr-namespace:ClearApp.Extensions"
              xmlns:effects="clr-namespace:ClearApp.Views.Effects"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:vm="clr-namespace:ClearApp.ViewModels.Pages"
              x:Class="ClearApp.Views.Pages.LoginPage"
+             x:DataType="vm:LoginPageViewModel"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource backgroundColor}">
     
@@ -24,20 +26,19 @@
                     <ColumnDefinition Width="65*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{extensions:ImageResource ClearApp.Resources.Images.clear_logo.png}"
-                       Grid.Column="0"/>
+                <ff:CachedImage Source="resource://ClearApp.Resources.Images.clear_logo.png"
+                                Grid.Column="0"/>
 
                 <StackLayout Grid.Column="1">
                     <Label Text="Abra sua conta"
-                           Style="{StaticResource DefaultLabelStyle}"
+                           Style="{StaticResource defaultLabelStyle}"
                            FontSize="Small"
                            HorizontalTextAlignment="End"
                            Margin="0, 12, 20, 0"/>
 
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnOpenAccountClicked"/>
+                        <TapGestureRecognizer Command="{Binding OpenAccountCommand}"/>
                     </StackLayout.GestureRecognizers>
-
                 </StackLayout>
             </Grid>
 
@@ -46,11 +47,11 @@
                          VerticalOptions="Center">
 
                 <Label Text="Seja bem-vindo(a)"
-                       Style="{StaticResource DefaultLabelStyle}"
+                       Style="{StaticResource defaultLabelStyle}"
                        FontSize="Medium"/>
 
                 <Label Text="Faça seu login para continuar."
-                       Style="{StaticResource DefaultLabelStyle}"
+                       Style="{StaticResource defaultLabelStyle}"
                        FontSize="Small"
                        FontAttributes="Bold"/>
 
@@ -60,7 +61,7 @@
 
                 <Button Text="Login"
                         Style="{StaticResource loginButtonStyle}"
-                        Clicked="OnLoginClicked">
+                        Command="{Binding LoginCommand}">
                     <Button.Effects>
                         <effects:ButtonHorizontalTextAlignmentEffect/>
                     </Button.Effects>

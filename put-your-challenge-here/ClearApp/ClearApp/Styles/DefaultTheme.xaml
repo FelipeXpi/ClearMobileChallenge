@@ -2,53 +2,7 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="ClearApp.Styles.DefaultTheme">
-
-    <Color x:Key="navigationBarColor">#131a20</Color>
-    <Color x:Key="backgroundColor">#131a20</Color>
-    <Color x:Key="textColor">#eeeeee</Color>
-    
-    <OnPlatform x:TypeArguments="x:String" x:Key="ShoikaLight">
-        <On Platform="Android" Value="shoika-light.ttf#Shoika Light" />
-        <On Platform="iOS" Value="shoika-light" />
-    </OnPlatform>
-
-    <OnPlatform x:TypeArguments="x:String" x:Key="ShoikaSemiBold">
-        <On Platform="Android" Value="shoika-semibold.ttf#Shoika SemiBold" />
-        <On Platform="iOS" Value="shoika-semibold" />
-    </OnPlatform>
-
-    <OnPlatform x:TypeArguments="x:String" x:Key="ShoikaLightItalic">
-        <On Platform="Android" Value="shoika-light-italic.ttf#Shoika Light Italic" />
-        <On Platform="iOS" Value="shoika-light-italic" />
-    </OnPlatform>
-
-    <Style TargetType="Label" x:Key="DefaultLabelStyle">
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="TextColor" Value="{StaticResource textColor}"/>
-        <Setter Property="FontFamily" Value="{StaticResource ShoikaLight}"/>
-
-        <Style.Triggers>
-            <Trigger TargetType="Label" Property="FontAttributes" Value="Bold">
-                <Setter Property="FontFamily" Value="{StaticResource ShoikaSemiBold}"/>
-            </Trigger>
-
-            <Trigger TargetType="Label" Property="FontAttributes" Value="Italic">
-                <Setter Property="FontFamily" Value="{StaticResource ShoikaLightItalic}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="loginButtonStyle" TargetType="Button">
-        <Setter Property="TextTransform" Value="None"/>
-        <Setter Property="TextColor" Value="White"/>
-        <Setter Property="BackgroundColor" Value="#0404cf"/>
-    </Style>
-
-    <Style x:Key="toolbarStyle" TargetType="StackLayout">
-        <Setter Property="Margin" Value="0, 0, 60, 0"/>
-        <Setter Property="HorizontalOptions" Value="Center"/>
-        <Setter Property="VerticalOptions" Value="Center"/>
-        <Setter Property="Spacing" Value="2"/>
-    </Style>
-
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Styles/Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -1,5 +1,4 @@
-﻿using ClearApp.Services;
-using ClearApp.ViewModels.Pages;
+﻿using ClearApp.ViewModels.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,20 +7,17 @@ namespace ClearApp.Views.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrdersPage : ContentPage
     {
-        private readonly OrdersPageViewModel _viewModel;
+        private OrdersPageViewModel viewModel;
 
-        public OrdersPage()
-        {
+        public OrdersPage() =>
             InitializeComponent();
-
-            _viewModel = this.GetViewModel() as OrdersPageViewModel;
-            BindingContext = _viewModel;
-        }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _viewModel.OnAppearingCommand.Execute(null);
+
+            viewModel = BindingContext as OrdersPageViewModel;
+            viewModel.OnAppearingCommand.Execute(null);
         }
     }
 }

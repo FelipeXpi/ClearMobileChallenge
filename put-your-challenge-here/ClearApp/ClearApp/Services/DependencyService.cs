@@ -1,46 +1,57 @@
 ﻿using ClearApp.Abstractions;
-using ClearApp.ViewModels.Pages;
-using ClearApp.Views.Pages;
+using ClearApp.Apis;
+using ClearApp.Managers;
+using Refit;
 using System;
-using System.Globalization;
-using System.Reflection;
+using System.Net.Http;
 using TinyIoC;
-using Xamarin.Forms;
 
 namespace ClearApp.Services
 {
     public static class DependencyService
     {
-        private static TinyIoCContainer container;
+        #region Fields
 
-        public static void InitializeContainer()
+        private static TinyIoCContainer container;
+        private static HttpClient httpClient;
+
+        #endregion
+
+        #region Public Methods
+
+        public static void Initialize()
         {
             container = TinyIoCContainer.Current;
-            RegisterDependencies();
-        }
 
-        private static void RegisterDependencies()
-        {
+            var restApi = BuildRestApi();
+            var viewModelManager = new ViewModelManager(container);
+
+            container.Register(restApi);
+            container.Register<IViewModelManager>(viewModelManager);
+            container.Register<INavigationService, NavigationService>();
             container.Register<IApiService, ApiService>();
         }
 
-        public static object GetViewModel(this BindableObject bindable)
+        public static T Get<T>() where T : class =>
+            container.Resolve<T>();
+
+        public static object Get(Type pageType) =>
+            container.Resolve(pageType);
+
+        #endregion
+
+        #region Private Methods
+
+        private static IRestApi BuildRestApi()
         {
-            var view = bindable as Element;
+            httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri(Constants.Api.URL)
+            };
 
-            if (view == null) return null;
-            if (view.BindingContext != null) return null;
-
-            var viewType = view.GetType();
-            var viewName = viewType.FullName.Replace(".Views.", ".ViewModels.");
-            var viewAssemblyName = viewType.GetTypeInfo().Assembly.FullName;
-            var viewModelName = string.Format(
-                CultureInfo.InvariantCulture, "{0}ViewModel, {1}", viewName, viewAssemblyName);
-
-            var viewModelType = Type.GetType(viewModelName, false, true);
-            if (viewModelType == null) return null;
-
-            return container.Resolve(viewModelType);
+            return RestService.For<IRestApi>(httpClient);
         }
+
+        #endregion
     }
 }

@@ -4,7 +4,6 @@ using ClearApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -13,7 +12,7 @@ using Xamarin.Forms.Internals;
 
 namespace ClearApp.ViewModels.Pages
 {
-    public class OrdersPageViewModel : INotifyPropertyChanged
+    public class OrdersPageViewModel : BasePageViewModel
     {
         #region Fields
 
@@ -23,7 +22,6 @@ namespace ClearApp.ViewModels.Pages
 
         private IEnumerable<Order> apiOrderCollection;
         private int skippedItems;
-        private bool isBusy;
 
         #endregion
 
@@ -53,17 +51,6 @@ namespace ClearApp.ViewModels.Pages
             set => skippedItems = value;
         }
 
-        public bool IsBusy {
-            get => isBusy;
-            set
-            {
-                isBusy = value;
-                OnPropertyChanged(nameof(IsBusy));
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         #endregion
 
         #region Constructor
@@ -84,7 +71,7 @@ namespace ClearApp.ViewModels.Pages
 
         private void ThresholdReachedCommandExecute(object sender)
         {
-            if (SkippedItems >= ItemsSource.Count) return;
+            if (SkippedItems >= ApiOrderCollection.Count()) return;
             LoadNextOrderCollection();
         }
 
@@ -122,13 +109,6 @@ namespace ClearApp.ViewModels.Pages
 
         private void LoadNextOrderCollection() =>
             SetOrderCollection(SkippedItems, ITEMS_PER_LOADING);
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         #endregion
     }

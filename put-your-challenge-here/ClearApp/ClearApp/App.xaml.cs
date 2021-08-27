@@ -1,32 +1,42 @@
-﻿using ClearApp.Views.Pages;
+﻿using ClearApp.Abstractions;
+using ClearApp.Extensions;
+using ClearApp.Views.Pages;
 using Xamarin.Forms;
+using DependencyService = ClearApp.Services.DependencyService;
 
 namespace ClearApp
 {
     public partial class App : Application
     {
+        #region Constructors
+
         public App()
         {
             InitializeComponent();
 
-            var _ = new Startup();
-
-            var rootPage = new LoginPage();
-            var navigationPage = new NavigationPage(rootPage);
-
-            MainPage = navigationPage;
+            InitializeDependencies();
+            GoToMainPage();
         }
 
-        protected override void OnStart()
-        {
-        }
+        #endregion
 
-        protected override void OnSleep()
-        {
-        }
+        #region Public Methods
 
-        protected override void OnResume()
-        {
-        }
+        public INavigationService GetNavigator() =>
+            DependencyService.Get<INavigationService>();
+
+        #endregion
+
+        #region Private Methods
+
+        private void InitializeDependencies() =>
+            DependencyService.Initialize();
+
+        private void GoToMainPage() =>
+            GetNavigator()
+                .ConfigureAndNavigateTo(nameof(LoginPage))
+                .SafeFireAndForget();
+
+        #endregion
     }
 }

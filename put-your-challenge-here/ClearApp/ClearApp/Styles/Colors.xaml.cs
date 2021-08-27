@@ -4,8 +4,8 @@ using Xamarin.Forms.Xaml;
 namespace ClearApp.Styles
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DefaultTheme : ResourceDictionary
+    public partial class Colors : ResourceDictionary
     {
-        public DefaultTheme() => InitializeComponent();
+        public Colors() => InitializeComponent();
     }
 }

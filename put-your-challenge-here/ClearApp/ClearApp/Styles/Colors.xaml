@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="ClearApp.Styles.Colors">
+
+    <!-- default colors -->
+    <Color x:Key="textColor">#eeeeee</Color>
+    <Color x:Key="backgroundColor">#131a20</Color>
+
+    <!-- nav colors -->
+    <Color x:Key="navigationBarColor">#131a20</Color>
+    
+    <!-- login colors -->
+    <Color x:Key="loginButtonColor">#0404cf</Color>
+
+    <!-- orders colors -->
+    <Color x:Key="sideBuyColor">#052fff</Color>
+    <Color x:Key="sideSellColor">#c2052b</Color>
+    <Color x:Key="moduleBadgeBackgroundColor">#4d677e</Color>
+    <Color x:Key="statusBadgeBackgroundColor">#7cd444</Color>
+    <Color x:Key="cardBackgroundColor">#1d262f</Color>
+
+</ResourceDictionary>
